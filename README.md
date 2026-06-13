@@ -1,60 +1,114 @@
 # 🎬 AI Video Assistant
 
-An intelligent AI-powered Video Assistant that transforms YouTube videos and local media files into actionable insights. Upload a video or provide a YouTube link to generate transcripts, summaries, action items, key decisions, and interact with your content using a conversational AI chatbot.
+AI Video Assistant is an intelligent video analysis platform that converts YouTube videos and local media files into searchable knowledge.
 
-## 🚀 Features
-
-### 🎥 Video & Audio Processing
-
-* Supports YouTube URLs
-* Supports local video and audio files
-* Automatic audio extraction
-
-### ✍️ AI Transcription
-
-* Whisper-powered speech-to-text
-* Multi-language support
-* Accurate transcript generation
-
-### 📋 Smart Summarization
-
-* AI-generated video summaries
-* Automatic title generation
-* Key takeaways extraction
-
-### ✅ Action Item Extraction
-
-* Detects tasks and responsibilities
-* Generates actionable insights
-* Highlights important follow-ups
-
-### 🔑 Key Decision Detection
-
-* Identifies important decisions discussed
-* Organizes decision points clearly
-
-### ❓ Open Question Detection
-
-* Extracts unanswered questions
-* Helps track pending discussions
-
-### 🤖 Chat With Your Video
-
-* RAG-powered conversational AI
-* Ask questions about video content
-* Context-aware responses
-* Semantic search capabilities
-
-### 🎨 Modern UI
-
-* Beautiful Streamlit interface
-* Interactive progress tracking
-* Dark-themed professional dashboard
-* Responsive design
+The application automatically transcribes audio, generates summaries, extracts action items, identifies key decisions, and allows users to chat with their video content using Retrieval-Augmented Generation (RAG).
 
 ---
 
-## 🏗️ Project Structure
+## 🚀 Features
+
+### 🎥 Video Processing
+
+* Analyze YouTube videos
+* Analyze local video/audio files
+* Automatic audio extraction
+
+### 🎙 Speech-to-Text
+
+* Whisper-powered transcription
+* Multi-language support
+* High-quality speech recognition
+
+### 📝 AI Summarization
+
+* Mistral AI powered summaries
+* Automatic title generation
+* Key insights extraction
+
+### ✅ Action Item Detection
+
+* Extract tasks and responsibilities
+* Identify follow-up actions
+* Meeting and lecture analysis
+
+### 🔑 Key Decision Extraction
+
+* Detect important decisions
+* Organize discussion outcomes
+
+### ❓ Question Extraction
+
+* Identify open questions
+* Track unresolved discussion points
+
+### 🤖 Chat With Your Video
+
+* RAG-powered conversational interface
+* Context-aware responses
+* Semantic search over transcripts
+
+### 🎨 Modern Streamlit UI
+
+* Interactive dashboard
+* Animated processing pipeline
+* Dark theme professional interface
+
+---
+
+## 🏗 Architecture
+
+```text
+User Input
+     │
+     ▼
+Video / Audio Processing
+     │
+     ▼
+Whisper Transcription
+     │
+     ▼
+Mistral AI Summarization
+     │
+     ▼
+Information Extraction
+(Action Items • Decisions • Questions)
+     │
+     ▼
+ChromaDB Vector Storage
+     │
+     ▼
+RAG Chat Interface
+```
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* Streamlit
+* HTML
+* CSS
+
+### AI & NLP
+
+* Mistral AI
+* Sarvam AI
+* Whisper
+* Sentence Transformers
+
+### Vector Database
+
+* ChromaDB
+
+### Backend
+
+* Python
+
+---
+
+## 📂 Project Structure
 
 ```text
 video-agent/
@@ -66,8 +120,8 @@ video-agent/
 │   ├── transcriber.py
 │   └── vectorStore.py
 │
-├── utils/
-│   └── audio_processor.py
+├── downloads/
+├── vector_db/
 │
 ├── App.py
 ├── main.py
@@ -78,64 +132,53 @@ video-agent/
 
 ---
 
-## ⚙️ Tech Stack
+## ⚙ Environment Variables
 
-### Frontend
+Create a `.env` file:
 
-* Streamlit
-* HTML/CSS
-* Custom UI Components
+```env
+MISTRAL_API_KEY=your_mistral_api_key
 
-### Backend
+SARVAM_API_KEY=your_sarvam_api_key
+SARVAM_STT_MODEL=sarvam-small
 
-* Python
-* LangChain
-* ChromaDB
+WHISPER_MODEL=small
+```
 
-### AI Models
-
-* OpenAI GPT Models
-* Whisper Speech Recognition
-* Sentence Transformers
-* Embedding Models
-
-### Vector Database
-
-* ChromaDB
-* Semantic Search
+Never upload your `.env` file to GitHub.
 
 ---
 
 ## 📦 Installation
 
-### Clone Repository
+Clone the repository:
 
 ```bash
 git clone https://github.com/MONJIT07/Video-Agent.git
 cd Video-Agent
 ```
 
-### Create Virtual Environment
+Create virtual environment:
 
 ```bash
 python -m venv venv
 ```
 
-### Activate Environment
+Activate virtual environment:
 
-#### Windows
+### Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-#### Linux / macOS
+### Linux/macOS
 
 ```bash
 source venv/bin/activate
 ```
 
-### Install Dependencies
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -143,19 +186,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🔑 Environment Variables
-
-Create a `.env` file:
-
-```env
-OPENAI_API_KEY=your_api_key_here
-```
-
-Add any additional API keys required by your implementation.
-
----
-
-## ▶️ Run Application
+## ▶ Run Application
 
 ```bash
 streamlit run App.py
@@ -169,62 +200,37 @@ http://localhost:8501
 
 ---
 
-## 🧠 How It Works
+## 🔄 Workflow
 
-1. User submits a YouTube URL or local file.
-2. Audio is extracted and processed.
+1. Provide a YouTube URL or local media file.
+2. Audio is extracted.
 3. Whisper generates transcripts.
-4. AI creates summaries and titles.
+4. Mistral AI creates summaries.
 5. Action items, decisions, and questions are extracted.
-6. Transcript is indexed into a vector database.
-7. Users interact with content through a RAG-powered chatbot.
+6. Transcript embeddings are stored in ChromaDB.
+7. Users interact with content through the AI chatbot.
 
 ---
 
-## 📸 Screenshots
+## 🌟 Use Cases
 
-Add screenshots of:
-
-* Home Page
-* Processing Pipeline
-* Summary Dashboard
-* Chat Interface
-
-Example:
-
-```markdown
-![Dashboard](images/dashboard.png)
-```
+* Meeting Analysis
+* Lecture Summarization
+* Podcast Insights
+* Educational Content Review
+* Interview Analysis
+* Research Video Understanding
 
 ---
 
-## 🎯 Future Improvements
+## 📈 Future Enhancements
 
-* Speaker diarization
-* Real-time transcription
-* PDF export
-* Meeting analytics
-* Multi-video knowledge base
-* Team collaboration features
-* Cloud deployment support
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+* Speaker Diarization
+* Real-Time Transcription
+* PDF Report Export
+* Multi-Video Knowledge Base
+* Cloud Deployment
+* Team Collaboration Features
 
 ---
 
@@ -232,6 +238,13 @@ This project is licensed under the MIT License.
 
 **Monjit Tamuli**
 
-Electrical Engineering Student | NIT Silchar
+Electrical Engineering Student
+National Institute of Technology Silchar
 
-Passionate about AI, Machine Learning, Cloud Computing, and Software Development.
+Interested in Artificial Intelligence, Machine Learning, Cloud Computing, and Software Development.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
